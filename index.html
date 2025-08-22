@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Thư viện ảnh tương tác</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #fafafa;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+    .gallery img {
+      width: 250px;
+      height: auto;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+    .gallery img:focus {
+      outline: 3px solid blue;
+    }
+  </style>
+</head>
+<body>
+  <h1>Thư viện ảnh của tôi</h1>
+
+  <div class="gallery" id="gallery">
+    <img src="images/photo-1.jpg" alt="Ly rượu nhìn từ trên cao">
+    <img src="images/photo-2.jpg" alt="Đồ ăn lễ hội Oktoberfest">
+    <img src="images/photo-3.jpg" alt="Cây nhiệt đới trong nhà kính">
+    <img src="images/photo-4.jpg" alt="Mỹ phẩm chảy trong nước xanh">
+    <img src="images/photo-5.jpg" alt="Cát và vỏ sò nhỏ">
+    <img src="images/photo-6.jpg" alt="Cây trong chai nhựa tái chế">
+  </div>
+
+  <script>
+    // Thêm tabindex tự động cho tất cả ảnh
+    document.querySelectorAll('.gallery img').forEach((img, i) => {
+      img.setAttribute('tabindex', i + 1);
+    });
+
+    // Sự kiện khi load trang
+    window.onload = () => alert("Chào mừng bạn đến với thư viện ảnh!");
+
+    // Sự kiện hover bằng chuột
+    document.querySelectorAll('.gallery img').forEach(img => {
+      img.addEventListener('mouseover', () => {
+        img.style.transform = "scale(1.1)";
+      });
+      img.addEventListener('mouseout', () => {
+        img.style.transform = "scale(1)";
+      });
+    });
+
+    // Sự kiện bàn phím
+    document.addEventListener('keydown', e => {
+      if (e.key === "ArrowRight") {
+        alert("Bạn nhấn mũi tên phải!");
+      }
+      if (e.key === "ArrowLeft") {
+        alert("Bạn nhấn mũi tên trái!");
+      }
+    });
+  </script>
+</body>
+</html>
+<script>
+// Sự kiện khi tải trang
+window.onload = function() {
+    alert("Chào mừng bạn đến với thư viện ảnh của tôi!");
+};
+
+// Sự kiện khi di chuột qua ảnh
+document.querySelectorAll("img").forEach(img => {
+    img.addEventListener("mouseover", function() {
+        this.style.border = "3px solid blue";   // viền xanh khi hover
+    });
+    img.addEventListener("mouseout", function() {
+        this.style.border = "none";             // bỏ viền khi rời chuột
+    });
+});
+
+// Sự kiện khi nhấn phím (ví dụ Enter để phóng to ảnh)
+document.querySelectorAll("img").forEach(img => {
+    img.addEventListener("keydown", function(e) {
+        if (e.key === "Enter") {
+            alert("Bạn vừa chọn ảnh: " + this.alt);
+        }
+    });
+});
+</script>
